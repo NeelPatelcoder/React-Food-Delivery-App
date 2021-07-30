@@ -10,14 +10,14 @@ const Resturent = () => {
     console.log(menudata)
     return (
         <>
-            
-                {/* <div className='btn-group'> */}
+            <nav className='navbar'>
+                <div className='btn-group'>
                     <button className='btn-group__item'>BreakFast</button>
                     <button className='btn-group__item'>Lunch</button>
                     <button className='btn-group__item'>Dinner</button>
                     <button className='btn-group__item'>All</button>
-                {/* </div> */}
-            
+                </div>
+            </nav>
 
 
 
