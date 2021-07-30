@@ -1,6 +1,6 @@
 import React from 'react'
 
-
+import img from'../Tea.jpg'
 
 const items = (props) => {
     return (
