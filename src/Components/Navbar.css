@@ -1,5 +1,6 @@
 .navbar {
-    
+  background-color: #0e0e0f;
+    padding-top: 15px !important;
     height: 80px;
     display:flex;
     color: white;
@@ -8,6 +9,7 @@
     align-items: center;
     
   }
+  
   .nav-links-mobile {
     display: none;
   }
@@ -57,7 +59,7 @@
   }
   
   .nav-text a:hover {
-    background-color: #1a83ff;
+    background-color: #0e0e0f;
   }
   
   .nav-menu-items {
@@ -122,7 +124,5 @@
   span {
     margin-left: 16px;
   }
-  button {
-    display: none;
-  }
+ 
 

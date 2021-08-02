@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import Menu from './MenuCard'
 import Itmes from './items'
 import '../App.css'
@@ -10,19 +10,15 @@ const Resturent = () => {
     console.log(menudata)
     return (
         <>
-            
-                {/* <div className='btn-group'> */}
-                    <button className='btn-group__item'>BreakFast</button>
-                    <button className='btn-group__item'>Lunch</button>
-                    <button className='btn-group__item'>Dinner</button>
-                    <button className='btn-group__item'>All</button>
-                {/* </div> */}
-            
 
+            <div className="btn-group" >
+                <button className="btn-group__item">BreakFast</button>
+                <button className="btn-group__item">Lunch</button>
+                <button className="btn-group__item">Dinner</button>
+                <button className="btn-group__item">All</button>
+            </div>
 
-
-        <Itmes menuData={menudata}/>
-
+            <Itmes menuData={menudata} />
         </>
     )
 }
