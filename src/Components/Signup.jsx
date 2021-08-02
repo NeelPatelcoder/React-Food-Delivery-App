@@ -50,20 +50,20 @@ const Signup = () => {
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div className='inputBox'>
                     <span><i className='fa fa-user'></i></span>
-                    <input type="text" placeholder="Enter Your Full Name" onChange={(e) => setName(e.target.value)} />
+                    <input type="text" placeholder="Enter Your Full Name" value={name} onChange={(e) => setName(e.target.value)} />
                 </div>
                 <div className='inputBox'>
                     <span><i className="fa fa-envelope" aria-hidden="true"></i>
                     </span>
-                    <input type="email" placeholder="Email-Id" onChange={(e) => setEmail(e.target.value)} />
+                    <input type="email" placeholder="Email-Id" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className='inputBox'>
                     <span><i className='fa fa-phone-square'></i></span>
-                    <input type="phone-number" placeholder="Phone Number" onChange={(e) => setPhonenumber(e.target.value)} />
+                    <input type="phone-number" placeholder="Phone Number" value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)} />
                 </div>
                 <div className="inputBox">
                     <span><i className='fa fa-lock'></i></span>
-                    <input type="password" placeholder='password' onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <input type="submit" value="Create Account" />
                 <ToastContainer />

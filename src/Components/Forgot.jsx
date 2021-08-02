@@ -2,26 +2,29 @@ import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import im from './user.png'
-import './Login.css'
+import './Forgot.css'
 import M from 'materialize-css'
 import { auth } from '../firebase'
 
 
 toast.configure()
-const Login = () => {
+const Forgot = ({user}) => {
     const [phonenumber, setPhonenumber] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const history = useHistory()
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(phonenumber, password,email)
         try {
-            const result = await auth.signInWithEmailAndPassword(email, password)
+            const result = await auth.sendPasswordResetEmail(email)
+            .then(() => {
+                    alert(`Hey! plese Check your Email-Box`)
+            })
             
-            M.toast({ html: `Welcome ${result.user.email}`, classes: "green" })
-            history.push('/Menu')
+            history.push('/login')
 
         }
         catch (err) {
@@ -35,7 +38,7 @@ const Login = () => {
     return (
         <div className="loginbox">
             <img className="user" src={im} alt="user" />
-            <h3>Sign In</h3>
+            <h4>Forgot Password</h4>
             <form onSubmit={(e) => handleSubmit(e)}>
             <div className='inputBox'>
                     <span><i className="fa fa-envelope" aria-hidden="true"></i>
@@ -48,18 +51,14 @@ const Login = () => {
                     </span>
                     <input type="phone-number" placeholder="Phone Number" value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)} required/>
                 </div>
-                <div className="inputBox">
-                    <span><i className='fa fa-lock'></i></span>
-                    <input type="password" placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <input type="submit" value="login" />
+              
+                <input type="submit" value="Change password" />
                 {/* <button className='submit'>Loggin</button> */}
                 <ToastContainer />
             </form>
-            <Link to="/forgot">Forgot Password ?</Link>
-            <Link to="/reset">Reset Password </Link>
+            
         </div>
     )
 }
 
-export default Login
+export default Forgot

@@ -1,0 +1,133 @@
+
+.body{
+
+    margin: 0px;
+     padding: 0px;
+    
+    
+    background: #153365;
+     font-family: sans-serif;
+     }
+    .loginbox{
+        border: 2px solid black;
+    
+    position: absolute;
+    
+    top: 50%;
+    
+    left: 50%;
+    
+    transform: translate(-50%,-50%);
+    width: 350px;
+    min-height: 200px;
+    
+    background: #fff;
+    
+    border-radius: 30px;
+    
+    padding: 40px;
+    
+    box-sizing:border-box;
+    
+    
+    
+    box-shadow: 0 30px rgba(0,0,0,0.5);
+    }
+    .user{
+    margin:0 auto;
+    
+    display: block;
+     margin-bottom: 20px;
+    
+    border-radius: 50%;
+    
+    height: 100px;
+    
+    width: 100px
+    
+    
+    
+    
+    }
+    
+    
+    
+    h4{
+        margin: 0;
+    
+    padding: 0 0 20px;
+    
+    color: #262626;
+    text-align: center;
+    }
+    .loginbox input{
+    
+    width: 100%;
+    
+    margin-bottom: 20px;
+    }
+    
+    .loginbox input[type="phone-number"],
+    .loginbox input[type='email'],
+    .loginbox input[type="password"]{
+    
+    border: none;
+    margin-left: 16px;
+    
+    outline: none; 
+    height: 40px;
+    color: #262626;
+    border-bottom: 2px solid #262626;
+    
+    background: transparent;
+     font-size: 16px;
+    
+    padding-left: 20px;
+    
+    box-sizing: border-box;
+    
+    }
+    .loginbox input[type="phone-number"]:focus,
+    .loginbox input[type="password"]:focus{
+        border-bottom: 2px solid #f00;
+        
+    
+    }
+    
+    .inputBox{
+    
+    position: relative;
+    }
+    
+    
+    .inputBox span{
+    position: absolute;
+    top: 10px;
+    color: #262626;
+    }
+    
+    .loginbox input[type="submit"]
+    {
+    
+    border: none; 
+    outline: none;
+    height: 40px;
+    font-size: 16px;
+    background: #ed292a;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    }
+    
+    .loginbox a{
+    
+    color: #262626; 
+    font-size: 14px;
+    
+    font-weight: bold;
+     text-decoration: none;
+    
+    display: block;
+    
+    text-align: center
+    }
