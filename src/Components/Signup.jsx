@@ -1,78 +1,86 @@
-import React, { useState } from 'react'
-import im from './user.png'
-import './Signup.css'
-import { Link,useHistory } from 'react-router-dom'
-import { auth } from '../firebase'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import M from 'materialize-css'
+import React, { useRef, useState } from "react"
 
+import './Signup.css'
+import { useAuth } from "../contexts/AuthContexts"
+import { Link, useHistory } from "react-router-dom"
+
+import im from './user.png'
+import { ToastContainer, toast } from 'react-toastify';
 
 
 toast.configure()
-
-const Signup = () => {
-    const [phonenumber, setPhonenumber] = useState('')
-    const [password, setPassword] = useState('')
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-
+export default function Signup() {
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const passwordConfirmRef = useRef()
+    const { signup } = useAuth()
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
     const history = useHistory()
 
-
-
-
-    const handleSubmit = async (e) => {
+    async function handleSubmit(e) {
         e.preventDefault()
 
-        console.log(phonenumber, password, name, email)
+        if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+            return setError("Passwords do not match")
+        }
+
         try {
-            const result = await auth.createUserWithEmailAndPassword(email, password)
-            toast("Wow so easy !");
-            M.toast({ html: `Welcome ${result.user.email}`, classes: "green" })
-            history.push('/Menu')
-
-        }
-        catch (err) {
-            toast("Enter 8 digit password !");
-            M.toast({ html: err.message, classes: "green" })
+            setError("")
+            setLoading(true)
+            await signup(emailRef.current.value, passwordRef.current.value)
+            history.push("/")
+        } catch {
+            setError("Failed to create an account")
         }
 
-
+        setLoading(false)
     }
 
-
-
     return (
-        <div className="loginbox">
-            <img className="user" src={im} alt="user" />
-            <h3>SignUp</h3>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div className='inputBox'>
-                    <span><i className='fa fa-user'></i></span>
-                    <input type="text" placeholder="Enter Your Full Name" onChange={(e) => setName(e.target.value)} />
-                </div>
-                <div className='inputBox'>
-                    <span><i className="fa fa-envelope" aria-hidden="true"></i>
+        <>
+            <div className="loginbox">
+                <img className="user" src={im} alt="user" />
+
+                <h3>SignUp</h3>
+                {/* {error && <Alert variant="danger">{error}</Alert>} */}
+                <form onSubmit={handleSubmit}>
+                    <div className='inputBox' id="email">
+                        <span><i className='fa fa-user'></i></span>
+                        <input type="email" placeholder="Enter Your email" ref={emailRef} required />
+                    </div>
+                    <div className='inputBox' id="password">
+                        <span><i className='fa fa-user'></i></span>
+                        <input type="password" placeholder="Enter Your Password" ref={passwordRef} required />
+                    </div>
+                    <div className='inputBox' id="password-confirm">
+                        <span><i className='fa fa-user'></i></span>
+                        <input type="password" placeholder="Confirm Your Password" ref={passwordConfirmRef} required />
+                    </div>
+
+
+                    {/*             
+            <Form.Group id="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" ref={passwordRef} required />
+            </Form.Group>
+            <Form.Group id="password-confirm">
+              <Form.Label>Password Confirmation</Form.Label>
+              <Form.Control type="password" ref={passwordConfirmRef} required />
+            </Form.Group> */}
+
+
+                    <input disabled={loading} type="submit" value="Create Account" />
+                    <span >
+                        Already have an account?
                     </span>
-                    <input type="email" placeholder="Email-Id" onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div className='inputBox'>
-                    <span><i className='fa fa-phone-square'></i></span>
-                    <input type="phone-number" placeholder="Phone Number" onChange={(e) => setPhonenumber(e.target.value)} />
-                </div>
-                <div className="inputBox">
-                    <span><i className='fa fa-lock'></i></span>
-                    <input type="password" placeholder='password' onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <input type="submit" value="Create Account" />
-                <ToastContainer />
-            </form>
+                    <Link to="/login">Log In</Link>
+                    <ToastContainer />
 
+                </form>
 
-            <Link to="/forgot">Forgot Password</Link>
-        </div>
+            </div>
+
+        </>
     )
 }
-
-export default Signup
